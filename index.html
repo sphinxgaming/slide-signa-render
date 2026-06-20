@@ -478,7 +478,7 @@ projectNav.innerHTML=projects.map((_project,index)=>`<button class="project-tab$
 const project=projects[activeProjectIndex];
 const files=project.images||[];
 const thumbs=files.map((src,index)=>`<button class="project-thumb" type="button" data-full="${src}" aria-label="Open ${project.title} slide ${index+1}"><img src="${src}" alt="${project.title} slide ${index+1}" loading="eager" decoding="async" fetchpriority="${index<8?"high":"auto"}"></button>`).join("");
-projectShowcase.innerHTML=`<article class="project-block ss-reveal is-visible" id="${project.slug}"><div class="project-header"><span class="project-kicker" data-project-count>${projectCountText(files.length)}</span><h3>${project.title}</h3><p>${project.meta}</p><p class="project-description">${files.length} Drive-hosted gallery images for this presentation project.</p></div><div class="project-gallery">${thumbs}</div></article>`;
+projectShowcase.innerHTML=`<article class="project-block ss-reveal is-visible" id="${project.slug}"><div class="project-header"><span class="project-kicker" data-project-count>${projectCountText(files.length)}</span><h3>${project.title}</h3><p>${project.meta}</p></div><div class="project-gallery">${thumbs}</div></article>`;
 prepareGalleryImages();
 }
 function openLightbox(src,alt){if(!lightbox||!lightboxImage||!src)return;lightboxImage.src=src;lightboxImage.alt=alt;lightbox.classList.add("is-open");lightbox.setAttribute("aria-hidden","false");document.body.classList.add("ss-lock");}
