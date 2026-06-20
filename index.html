@@ -600,9 +600,8 @@ message,
 ].filter(Boolean).join("\n");
 const digits=whatsappNumber.replace(/\D/g,"");
 const whatsappUrl=digits.length>=8?`https://wa.me/${digits}?text=${encodeURIComponent(body)}`:`https://wa.me/?text=${encodeURIComponent(body)}`;
-if(formNote)formNote.textContent=digits.length>=8?"Opening WhatsApp with the inquiry ready to send.":"Opening WhatsApp. Add your WhatsApp number in the code for direct routing.";
-const win=window.open(whatsappUrl,"_blank","noopener,noreferrer");
-if(!win)window.location.href=whatsappUrl;
+if(formNote)formNote.innerHTML=`${digits.length>=8?"Opening WhatsApp with the inquiry ready to send.":"Opening WhatsApp. Add your WhatsApp number in the code for direct routing."} <a href="${whatsappUrl}" rel="noopener">Tap here if it does not open.</a>`;
+window.location.assign(whatsappUrl);
 });
 })();
 </script>
