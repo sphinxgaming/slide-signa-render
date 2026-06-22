@@ -44,7 +44,7 @@ html{scroll-behavior:smooth}body{margin:0;background:var(--ss-paper);color:var(-
 </style>
 <style>
 
-.ss-kinetic-grid{z-index:1;opacity:1}.ss-hero,.ss-section,.ss-signal-strip,.ss-brand-marquee,.ss-footer{z-index:2}.ss-hero{background:linear-gradient(180deg,rgba(255,255,255,.52) 0%,rgba(248,250,252,.42) 58%,rgba(238,245,255,.52) 100%)}.ss-services,.ss-portfolio,.ss-founder{background:transparent}.ss-signal-strip{background:#fff}.ss-brand-marquee{background:#55595a}
+.ss-kinetic-grid{z-index:1;opacity:1}.ss-hero,.ss-section,.ss-signal-strip,.ss-brand-marquee,.ss-footer{z-index:2}.ss-hero{background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,rgba(248,250,252,.16) 58%,rgba(238,245,255,.28) 100%)}.ss-services,.ss-portfolio,.ss-founder{background:transparent}.ss-signal-strip{background:#fff}.ss-brand-marquee{background:#55595a}
 
 
 .payment-widget{padding:4px}.payment-panel{width:min(99vw,1320px)}.payment-header{padding:20px 20px 16px}.payment-header strong{font-size:clamp(1.52rem,2.6vw,2.08rem);line-height:1.04}.payment-header span{font-size:.92rem}.payment-body{gap:15px;padding:18px}.payment-summary{padding:13px 15px}.payment-options{gap:12px}.payment-option{min-height:218px;padding:18px}.payment-option h3{font-size:1.2rem;white-space:nowrap}.payment-bullets,.payment-option p{font-size:.95rem;line-height:1.44}.payment-option .ss-primary,.payment-option .ss-secondary{min-height:44px;padding:0 18px;font-size:.9rem;line-height:1;white-space:nowrap}.payment-option>.ss-primary,.payment-option>[data-request-bank]{width:100%}.payment-actions{flex-wrap:nowrap}.payment-actions .ss-secondary{flex:1 1 0;min-width:0}.payment-note{font-size:.86rem;line-height:1.35;white-space:nowrap}@media(max-width:760px){.payment-widget{padding:10px}.payment-panel{width:100%}.payment-options{grid-template-columns:1fr}.payment-option h3{font-size:1.18rem;white-space:normal}.payment-actions{flex-wrap:wrap}.payment-option .ss-primary,.payment-option .ss-secondary{white-space:normal;line-height:1.12}.payment-note{white-space:normal}}
@@ -401,22 +401,22 @@ return {x:point.x+ox,y:point.y+oy,glow:glow};
 function draw(){
 ctx.clearRect(0,0,width,height);
 const moved=points.map(transformPoint);
-ctx.lineWidth=1;
+ctx.lineWidth=1.25;
 moved.forEach((point,index)=>{
 const right=(index+1)%cols===0?null:moved[index+1],down=moved[index+cols];
-const alpha=.045+Math.min(.2,point.glow*.26);
+const alpha=.12+Math.min(.34,point.glow*.36);
 ctx.strokeStyle="rgba(37,99,235,"+alpha+")";
 if(right){ctx.beginPath();ctx.moveTo(point.x,point.y);ctx.lineTo(right.x,right.y);ctx.stroke();}
 if(down){ctx.beginPath();ctx.moveTo(point.x,point.y);ctx.lineTo(down.x,down.y);ctx.stroke();}
 });
 moved.forEach((point)=>{
-const radius=1.1+point.glow*2.5;
-ctx.fillStyle=point.glow>.08?"rgba(56,189,248,"+(.28+point.glow*.48)+")":"rgba(16,24,40,.16)";
+const radius=1.45+point.glow*2.8;
+ctx.fillStyle=point.glow>.08?"rgba(56,189,248,"+(.5+point.glow*.46)+")":"rgba(37,99,235,.3)";
 ctx.beginPath();ctx.arc(point.x,point.y,radius,0,Math.PI*2);ctx.fill();
 });
 pulses.forEach((pulse)=>{
-const radius=pulse.t*(width<640?190:275),alpha=.3*(1-pulse.t);
-ctx.strokeStyle="rgba(56,189,248,"+alpha+")";ctx.lineWidth=2;
+const radius=pulse.t*(width<640?190:275),alpha=.46*(1-pulse.t);
+ctx.strokeStyle="rgba(56,189,248,"+alpha+")";ctx.lineWidth=2.4;
 ctx.beginPath();ctx.arc(pulse.x,pulse.y,radius,0,Math.PI*2);ctx.stroke();
 pulse.t+=reduced ? .08 : .018;
 });
